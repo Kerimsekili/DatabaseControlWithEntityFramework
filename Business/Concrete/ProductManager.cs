@@ -22,10 +22,10 @@ namespace Business.Concrete
 
          public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
-            {
-                return new ErrorDataResult<List<Product>>(Messeges.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour == 19)
+            //{
+            //    return new ErrorDataResult<List<Product>>(Messeges.MaintenanceTime);
+            //}
             //Business Codes
             //is he access?
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messeges.ProductListed);
