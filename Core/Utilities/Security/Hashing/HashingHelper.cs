@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Utilities.Security.Hashing
 {
-    public class HasgingHelper
+    public class HashingHelper
     {
         public static void CreatePasswordHash(string password, out byte[] passwordHash,out byte[] passwordSalt)
         {
