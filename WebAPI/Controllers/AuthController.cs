@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using System;
+using Business.Abstract;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ namespace WebAPI.Controllers
         [HttpPost("login")]
         public ActionResult Login(UserForLoginDto userForLoginDto)
         {
+
             var userToLogin = _authService.Login(userForLoginDto);
             if (!userToLogin.Success)
             {
@@ -30,8 +32,9 @@ namespace WebAPI.Controllers
             {
                 return Ok(result.Data);
             }
-
             return BadRequest(result.Messege);
+
+
         }
 
         [HttpPost("register")]

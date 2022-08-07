@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using System;
+using Business.Abstract;
 using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -38,15 +39,16 @@ namespace Business.Concrete
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
+
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
             if (userToCheck == null)
             {
                 return new ErrorDataResult<User>(Messeges.UserNotFound);
             }
 
+
             if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
             {
-                return new ErrorDataResult<User>(Messeges.PasswordError);
             }
 
             return new SuccessDataResult<User>(userToCheck, Messeges.SuccessfulLogin);
@@ -62,10 +64,10 @@ namespace Business.Concrete
         }
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
-        {
+        {     
             var claims = _userService.GetClaims(user);
-            var accessToken = _tokenHelper.CreateToken(user, claims);
-            return new SuccessDataResult<AccessToken>(accessToken, Messeges.AccessTokenCreated);
+                var accessToken = _tokenHelper.CreateToken(user, claims);
+                return new SuccessDataResult<AccessToken>(accessToken, Messeges.AccessTokenCreated);
+            }
         }
-    }
 }
