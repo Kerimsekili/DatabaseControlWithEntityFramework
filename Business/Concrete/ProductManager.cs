@@ -32,6 +32,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
+        [CacheAspect]//Key Value
         public IDataResult<List<Product>> GetAll()
         {
             //if (DateTime.Now.Hour == 19)
